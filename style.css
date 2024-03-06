@@ -1,0 +1,155 @@
+/* 1rem = 16px */
+
+body, label, textarea, .boton {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0;
+    /*  <uniquifier>: Use a unique and descriptive class name
+    <weight>: Use a value from 100 to 900   */
+}
+
+body {
+    background: #FFFFFF;
+}
+
+#logo{
+    position: absolute;
+    display: inline-block;
+    margin: 4vh 4vw;
+}
+
+#box {
+    width: 100vw; 
+    height: 90vh; 
+}
+
+#interfaz {
+    display: block;
+    margin: 1%;
+}
+
+#interfaz_entrada, #interfaz_salida {
+    height: 85vh;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: content-box;
+    padding: 3vh 0;
+    margin-top: 3vh;
+}
+
+#interfaz_entrada {
+    width: 68%;
+}
+
+#interfaz_entrada--campo_texto {
+    height: 55vh;
+    width: 80%;
+    font-size: 32px;
+    padding: 8% 0 1% 4% ;
+    border: hidden;
+    background: #F3F5FC;
+    border: hidden;
+    resize: none;
+    outline: 0;
+    color: #0A3871;
+    line-height: 48px;
+}
+
+#interfaz_entrada--campo_texto::placeholder {
+    color: #0A3871;
+}
+
+#interfaz_entrada--condicion {
+    font-size: 12px;
+    text-align: left;
+    margin: 0 0 0 10%;
+    vertical-align: top;
+    color: #495057;
+}
+
+#interfaz_entrada--condicion::before {
+    content: url(image/Vector.png) ' ';
+}
+
+.boton {
+    font-size: 16px;
+    width: 23.5vw;
+    height: 9vh;
+    border-radius: 20px;
+    vertical-align: bottom;
+    margin: 1%;
+    background: #D8DFE8;
+    color: #0A3871;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+.boton:hover {
+    background: #609ED4;
+    color: #D8DFE8;
+}
+
+#boton-encriptar {
+    background: #0A3871;
+    color: #FFFFFF;
+}
+
+#boton-encriptar:hover {
+    background: #356EA9;
+}
+
+#interfaz_salida {
+    width: 28%;
+    border: solid 2px #FFFFFF;
+    border-radius: 32px;
+    background-color: #F3F5FC;
+    box-shadow: 0 24px 32px -40px #000000;
+}
+
+#interfaz_salida--campo_texto {
+    font-size: 24px;
+    height: 67vh;
+    width: 90%;
+    border: hidden;
+    resize: none;
+    outline: 0;
+    color: #495057;
+    line-height: 36px;
+}
+
+#interfaz_salida--info {
+    display: inline-block;
+    position: absolute;
+    top: 20vh;
+    left: 69.8vw;
+    width: 23.33vw;
+    height: 29.71vh;
+}
+
+#interfaz_salida--imagen_info {
+    width: 23.33vw;
+    height: 32vh;
+}
+
+#interfaz_salida--titulo_info {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343A40;
+}
+
+#interfaz_salida--texto_info {
+    font-size: 16px;
+    color: #495057;
+}
+
+#boton-copiar{
+    margin: 2.8% 1%;
+}
+
+#copyright {
+    text-align: center;
+}
