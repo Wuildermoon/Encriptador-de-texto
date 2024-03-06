@@ -12,7 +12,7 @@ body, label, textarea, .boton {
 }
 
 body {
-    background: #FFFFFF;
+    background: #F3F5FC;
 }
 
 #logo{
@@ -106,7 +106,7 @@ body {
     width: 28%;
     border: solid 2px #FFFFFF;
     border-radius: 32px;
-    background-color: #F3F5FC;
+    background-color: #FFFFFF;
     box-shadow: 0 24px 32px -40px #000000;
 }
 
