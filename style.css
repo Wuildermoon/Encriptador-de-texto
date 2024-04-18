@@ -15,48 +15,76 @@ body {
     background: #F3F5FC;
 }
 
+/* Header */
+
 #logo{
-    position: absolute;
-    display: inline-block;
-    margin: 4vh 4vw;
+    display: block;
+    position: relative;
+    top: 2px;
+    height: 50px;
 }
 
+/* Body */
+
 #box {
-    width: 100vw; 
-    height: 90vh; 
+    width: auto;
 }
 
 #interfaz {
-    display: block;
-    margin: 1%;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
+
+/* Interfaces de entrada-salida de texto */
 
 #interfaz_entrada, #interfaz_salida {
-    height: 85vh;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
     box-sizing: content-box;
-    padding: 3vh 0;
-    margin-top: 3vh;
+    gap: 10px;
 }
 
-#interfaz_entrada {
-    width: 68%;
+.input-texto {
+    height: 300px;
+    width: 85%;
+    border: hidden;
+    resize: none; /* el campo de texto no se puede cambiar de tamaño*/
+    outline: 0; /*elimino el contorno de la caja de texto*/
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 24px;
 }
+
+.boton {
+    font-size: 16px;
+    width: 150px;
+    height: 65px;
+    border-radius: 25px;
+    background: #D8DFE8;
+    color: #0A3871;
+    cursor: pointer;
+    transition: 500ms;
+    font-size: 20px;
+}
+
+.boton:hover {
+    background: #609ED4;
+    color: #D8DFE8;
+}
+
+/* Interfaz entrada */
 
 #interfaz_entrada--campo_texto {
-    height: 55vh;
-    width: 80%;
-    font-size: 32px;
-    padding: 8% 0 1% 4% ;
-    border: hidden;
-    background: #F3F5FC;
-    border: hidden;
-    resize: none;
-    outline: 0;
     color: #0A3871;
     line-height: 48px;
+    gap: 10px;
 }
 
 #interfaz_entrada--campo_texto::placeholder {
@@ -64,10 +92,8 @@ body {
 }
 
 #interfaz_entrada--condicion {
-    font-size: 12px;
+    font-size: 16px;
     text-align: left;
-    margin: 0 0 0 10%;
-    vertical-align: top;
     color: #495057;
 }
 
@@ -75,22 +101,8 @@ body {
     content: url(image/Vector.png) ' ';
 }
 
-.boton {
-    font-size: 16px;
-    width: 23.5vw;
-    height: 9vh;
-    border-radius: 20px;
-    vertical-align: bottom;
-    margin: 1%;
-    background: #D8DFE8;
-    color: #0A3871;
-    cursor: pointer;
-    transition: 500ms;
-}
-
-.boton:hover {
-    background: #609ED4;
-    color: #D8DFE8;
+#interfaz--btn {
+    display: flex;
 }
 
 #boton-encriptar {
@@ -102,54 +114,71 @@ body {
     background: #356EA9;
 }
 
+/* Interfaz salida */
+
 #interfaz_salida {
-    width: 28%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    /* height: 500px; */
+    width: 86%;
     border: solid 2px #FFFFFF;
     border-radius: 32px;
     background-color: #FFFFFF;
-    box-shadow: 0 24px 32px -40px #000000;
+    box-shadow: 0 25px 32px -40px #000000;
+    gap: 0;
 }
 
 #interfaz_salida--campo_texto {
-    font-size: 24px;
-    height: 67vh;
-    width: 90%;
-    border: hidden;
-    resize: none;
-    outline: 0;
     color: #495057;
     line-height: 36px;
+    height: 300px;
+    width: 96%;
 }
 
 #interfaz_salida--info {
-    display: inline-block;
+    display: flex;
     position: absolute;
-    top: 20vh;
-    left: 69.8vw;
-    width: 23.33vw;
-    height: 29.71vh;
+    height: 275px;
+    width: 100%;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    left: 0;
+    top: 535px;
+    gap: 15px;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
 #interfaz_salida--imagen_info {
-    width: 23.33vw;
-    height: 32vh;
+    height: 200px;
+    width: 250px;
 }
 
 #interfaz_salida--titulo_info {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: bold;
     color: #343A40;
 }
 
 #interfaz_salida--texto_info {
-    font-size: 16px;
+    font-size: 14px;
     color: #495057;
 }
 
 #boton-copiar{
-    margin: 2.8% 1%;
+    margin: 15px 0;
 }
 
 #copyright {
-    text-align: center;
+    display: flex;
+    height: 30px;
+    width: 100%;
+    font-size: 12px;
+    color: #495057;
+    align-items: center;
+    justify-content: center;
 }
