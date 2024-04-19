@@ -83,8 +83,7 @@ body {
 
 #interfaz_entrada--campo_texto {
     color: #0A3871;
-    line-height: 48px;
-    gap: 10px;
+    line-height: 36px;
 }
 
 #interfaz_entrada--campo_texto::placeholder {
@@ -103,6 +102,9 @@ body {
 
 #interfaz--btn {
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 #boton-encriptar {
@@ -135,6 +137,7 @@ body {
     line-height: 36px;
     height: 300px;
     width: 96%;
+    cursor: text;
 }
 
 #interfaz_salida--info {
@@ -151,6 +154,7 @@ body {
     gap: 15px;
     flex-grow: 1;
     flex-shrink: 1;
+    cursor: text;
 }
 
 #interfaz_salida--imagen_info {
@@ -181,4 +185,98 @@ body {
     color: #495057;
     align-items: center;
     justify-content: center;
+}
+
+@media only screen and (min-width: 992px) {
+
+    #interfaz {
+        flex-flow: row nowrap;
+        gap: 0;
+    }
+
+    /* Interfaces de entrada-salida de texto */
+
+    #interfaz_entrada, #interfaz_salida {
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: auto;
+    }
+    
+    .input-texto {
+        height: 400px;
+        padding: 30px;
+    }
+    
+    .boton {
+        width: 250px;
+        height: 65px;
+        font-size: 24px;
+    }
+
+    /* Interfaz entrada */
+    
+    #interfaz_entrada--campo_texto {
+        line-height: 48px;
+        width: 80%;
+    }
+    
+    #interfaz_entrada--condicion {
+        font-size: 18px;
+    }
+    
+    /* Interfaz salida */
+    
+    #interfaz_salida {
+        height: 600px; 
+        width: 25%;
+        gap: 0;
+        margin-right: 2rem;
+        flex-grow: 1;
+    }
+    
+    #interfaz_salida--campo_texto {
+        height: 400px;
+        width: 280px;
+        flex-grow: 1;
+    }
+    
+    #interfaz_salida--info {
+        height: 350px;
+        width: 20%;
+        top: 120px;
+        left: auto;
+        right: 3.5rem;
+        flex-grow: 1;
+    }
+    
+    #interfaz_salida--imagen_info {
+        height: 200px;
+        width: auto;
+        flex-grow: 1;
+    }
+    
+    #interfaz_salida--titulo_info {
+        font-size: 22px;
+    }
+    
+    #interfaz_salida--texto_info {
+        font-size: 16px;
+    }
+    
+    #boton-copiar{
+        margin: 15px 0;
+    }
+    
+    #copyright {
+        display: flex;
+        height: 30px;
+        width: 100%;
+        font-size: 12px;
+        color: #495057;
+        align-items: center;
+        justify-content: center;
+    }
+
 }
