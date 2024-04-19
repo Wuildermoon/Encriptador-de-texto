@@ -12,7 +12,7 @@ const diccionario_codigos = [
 ];
 
 function procesarTexto(textoNoProcesado) {
-    let textoProcesado = textoNoProcesado.replace(/[^a-záéíóúüñ ]/gi, '').toLowerCase();
+    let textoProcesado = textoNoProcesado.replace(/[^a-záéíóúü ]/gi, '').toLowerCase();
     return textoProcesado;
 } //Funcion para convertir las letras en mayusculas a minúsculas y eliminar caracteres especiales
 
@@ -21,7 +21,7 @@ function botonEncriptar(){
     const textoTransformado = encriptar(textoNoTransformado);
     campo_mensaje.value = textoTransformado;
     campo_texto.value = '';
-    infoSalida.style.display = 'none';
+    desaparecerInfo();
 } //Funcion para activar la Funcion "encriptar()".
 
 function encriptar(textoDesencriptado) {
@@ -40,7 +40,7 @@ function botonDesencriptar() {
     const texto = desencriptar(campo_texto.value);
     campo_mensaje.value = texto;
     campo_texto.value = '';
-    infoSalida.style.display = 'none';
+    desaparecerInfo();
 } //Funcion para activar la Funcion "desencriptar()".
 
 function desencriptar(textoEncriptado) {
@@ -55,15 +55,28 @@ function desencriptar(textoEncriptado) {
     return textoEncriptado;
 } //Funcion para desencriptar el texto dado por el usuario.
 
+function desaparecerInfo() {
+    campoTextoSalida = campo_mensaje.value;
+    info = infoSalida;
+    if (campoTextoSalida =! '') {
+        info.style.display = 'none';
+    }
+} //Funcion para desaparecer la informacion del "campo_mensaje"
+
+function aparecerInfo() {
+    campoTextoSalida = campo_mensaje.value;
+    info = infoSalida;
+    if (campoTextoSalida == '') {
+        info.style.display = 'flex';
+    }
+} //Funcion para aparecer la informacion del "campo_mensaje"
+
+campo_mensaje.addEventListener('keydown', desaparecerInfo) //Evento que llama a la funcion "desaparacerInfo()" cuando se presiona una tecla
+
+campo_mensaje.addEventListener('keyup', aparecerInfo) //Evento que llama a la funcion "aparacerInfo()" cuando se levanta una tecla
+
 copiar.addEventListener('click', async() => {
     await navigator.clipboard.writeText(campo_mensaje.value);
     campo_mensaje.value = '';
-    infoSalida.style.display = 'inline-block';
+    aparecerInfo();
 }); //Funcion para copiar el texto de "campo_mensaje".
-
-/*
-function copiarTexto() {
-    let textoCopiado = campo_mensaje;
-    navigator.clipboard.writeText(textoCopiado.value);
-} //Funcion para copiar el texto de la caja de texto "campo-mensaje"
-*/ //Funcion alternativa para copiar texto que hice al principio, antes de que se me ocurriera agregar un boton para pegar xD.

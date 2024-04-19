@@ -1,4 +1,4 @@
-/* 1rem = 16px */
+/* Pantallas pequeñas */
 
 body, label, textarea, .boton {
   font-family: "Inter", sans-serif;
@@ -20,7 +20,7 @@ body {
 #logo{
     display: block;
     position: relative;
-    top: 2px;
+    top: 5px;
     height: 50px;
 }
 
@@ -187,6 +187,21 @@ body {
     justify-content: center;
 }
 
+/* Pantallas medianas */
+
+@media only screen and (min-width: 768px) {
+
+    .boton {
+        width: 250px;
+        height: 65px;
+        font-size: 24px;
+    }
+
+}
+
+
+/* Pantallas grandes */
+
 @media only screen and (min-width: 992px) {
 
     #interfaz {
@@ -207,12 +222,6 @@ body {
     .input-texto {
         height: 400px;
         padding: 30px;
-    }
-    
-    .boton {
-        width: 250px;
-        height: 65px;
-        font-size: 24px;
     }
 
     /* Interfaz entrada */
