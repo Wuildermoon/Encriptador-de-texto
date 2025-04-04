@@ -1,86 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-        <title>Encriptador de Texto</title>
-    </head>
-
-    <body>
-
-        <main class="main">
-
-            <header id="logo">
-
-                <h1>
-                    <img src="image/Logo.png" alt="Logo Alura" id="logo--imagen">
-                </h1>
-
-            </header>
-
-            <div id="box">
-
-                <ul id="interfaz">
-
-                    <li id="interfaz_entrada">
-                        
-                        <textarea id="interfaz_entrada--campo_texto" class="input-texto" placeholder="Ingrese el texto aqui"></textarea>
-
-                        <h4 id="interfaz_entrada--condicion">Solo letras minúsculas y sin acentos</h4>
-
-                        <div id="interfaz--btn">
-
-                            <button id="boton-encriptar" class="boton" onclick="botonEncriptar();">Encriptar</button>
-
-                            <button id="boton-decifrar" class="boton" onclick="botonDesencriptar();">Decifrar</button>
-
-                        </div>
-    
-                    </li>
-
-                    <li id="interfaz_salida">
-
-                        <textarea id="interfaz_salida--campo_texto" class="input-texto" placeholder="" onfocus="ocultarInfo()"></textarea>
-
-                        <label for="interfaz_salida--campo_texto">
-
-                            <div id="interfaz_salida--info">
-
-                                <img src="image/Muñeco.png" alt="Persona viendo un diamante con una lupa" id="interfaz_salida--imagen_info">
-
-                                <h3 id="interfaz_salida--titulo_info">Ningun mensaje fue encontrado</h3>
-
-                                <p id="interfaz_salida--texto_info">Ingresa el texto que desees encriptar o desencriptar.</p>
-
-                            </div>
-
-                        </label>
-
-                        <div class="interfaz--btn">
-                            <button id="boton-copiar" class="boton">Copiar</button>
-                        </div>
-
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <footer>
-
-                <p id="copyright">&copy Copyright Wuilderman Berrios - 2024</p>
-
-            </footer>
-
-        </main>
-
-        <script src="script.js"></script>
-
-    </body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Encriptador de Texto</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        transition: all 0.3s ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-slate-100">
+    <!-- HEADER -->
+    <header id="logo" class="flex items-center p-1 h-16">
+      <h1>
+        <img
+          src="image/Logo.png"
+          alt="Logo Alura"
+          id="logo--image"
+          class="h-full object-contain" />
+      </h1>
+    </header>
+    <!-- MAIN -->
+    <main id="box" class="min-h-full w-auto p-8">
+      <section
+        id="interface"
+        class="grid grid-cols-1 justify-center items-center gap-8 mt-2.5 lg:grid-rows-1 lg:grid-cols-12 lg:items-start lg:gap-0">
+        <!-- INPUT INTERFACE -->
+        <div
+          id="input_interface"
+          class="grid grid-cols-1 grid-rows-12 gap-1 w-full h-full lg:col-span-7 lg:px-8 lg:gap-0">
+          <textarea
+            id="input_interface--text_field"
+            class="row-span-9 col-start-1 -col-end-1 w-full h-72 md:h-72 lg:h-96 p-10 lg:p-8 border-0 outline-none resize-none rounded-3xl text-xl lg:text-2xl text-blue-950 leading-8 lg:leading-10 shadow-md"
+            placeholder="Ingrese el texto aqui"></textarea>
+          <small
+            id="input_interface--condition"
+            class="row-span-1 col-start-1 -col-end-1 flex items-center justify-center gap-2 text-sm text-slate-600 text-center">
+            <img src="image/Vector.png" alt class="inline-block" />
+            Solo letras minúsculas y sin acentos
+          </small>
+          <div
+            id="interface--btn"
+            class="row-span-2 col-start-1 -col-end-1 flex items-center justify-evenly w-full gap-4">
+            <button
+              id="encrypt-button"
+              class="w-full max-w-52 py-4 text-xl lg:text-2xl text-white rounded-3xl bg-blue-950 transition duration-500 hover:bg-blue-800 shadow-md">
+              Encriptar
+            </button>
+            <button
+              id="decrypt-button"
+              class="w-full max-w-52 py-4 text-xl lg:text-2xl text-blue-950 rounded-3xl bg-slate-200 transition duration-500 hover:bg-blue-400 hover:text-slate-200 shadow-md">
+              Decifrar
+            </button>
+          </div>
+        </div>
+        <!-- OUTPUT INTERFACE -->
+        <div
+          id="output_interface"
+          class="lg:col-span-5 grid grid-cols-1 grid-rows-12 items-center justify-center w-full min-h-full p-8 border-2 border-white rounded-3xl bg-white shadow-xl">
+          <textarea
+            id="output_interface--text_field"
+            class="row-span-10 hidden w-full h-80 lg:h-full border-0 outline-none resize-none rounded-3xl p-2.5 text-slate-600 text-xl lg:text-2xl leading-8 lg:leading-10"
+            placeholder></textarea>
+          <div
+            id="output_interface--info"
+            class="row-span-10 flex flex-col items-center justify-center text-center w-full h-80 lg:h-full gap-4 p-4 pointer-events-none">
+            <img
+              src="image/Muñeco.png"
+              alt="Persona viendo un diamante con una lupa"
+              id="output_interface--image_info"
+              class="w-60 h-48 lg:w-auto lg:h-48" />
+            <h3
+              id="output_interface--title_info"
+              class="font-bold text-base lg:text-xl text-slate-700">
+              Ningun mensaje fue encontrado
+            </h3>
+            <p
+              id="output_interface--text_info"
+              class="text-xs lg:text-base text-slate-600">
+              Ingresa el texto que desees encriptar o desencriptar.
+            </p>
+          </div>
+          <div class="row-span-2 flex items-center justify-center w-full">
+            <button
+              id="copy-button"
+              class="w-full max-w-52 py-4 text-xl lg:text-2xl text-blue-950 rounded-3xl bg-slate-200 transition duration-500 hover:bg-blue-400 hover:text-slate-200 shadow-md pointer-events-none">
+              Copiar
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- FOOTER -->
+    <footer>
+      <p
+        id="copyright"
+        class="flex items-center justify-center w-full p-4 text-xs text-slate-600">
+        &copy; Copyright Wuilderman Berrios - 2024
+      </p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
 </html>

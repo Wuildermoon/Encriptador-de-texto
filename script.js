@@ -1,82 +1,101 @@
-const campo_texto = document.getElementById('interfaz_entrada--campo_texto');
-const campo_mensaje = document.getElementById('interfaz_salida--campo_texto');
-const copiar = document.getElementById('boton-copiar');
-const indicadorEntrada = document.getElementById('interfaz_entrada--indicador');
-const infoSalida = document.getElementById('interfaz_salida--info');
-const diccionario_codigos = [
-    ["e", "enter"],
-    ["i", "imes"],
-    ["a", "ai"],
-    ["o", "ober"],
-    ["u", "ufat"]
+const inputTextField = document.getElementById("input_interface--text_field");
+const messageField = document.getElementById("output_interface--text_field");
+const copyButton = document.getElementById("copy-button");
+const encryptButton = document.getElementById("encrypt-button");
+const decryptButton = document.getElementById("decrypt-button");
+const outputInfo = document.getElementById("output_interface--info");
+const codeDictionary = [
+  ["e", "z#e7pl"],
+  ["i", "b$iq4k"],
+  ["a", "x!a3ld"],
+  ["o", "t@or9v"],
+  ["u", "m%und0"],
 ];
 
-function procesarTexto(textoNoProcesado) {
-    let textoProcesado = textoNoProcesado.replace(/[^a-záéíóúü ]/gi, '').toLowerCase();
-    return textoProcesado;
-} //Funcion para convertir las letras en mayusculas a minúsculas y eliminar caracteres especiales
+function processText(unprocessedText) {
+  return unprocessedText
+    .toLowerCase() // Convertir a minúsculas
+    .normalize("NFD") // Separar los acentos de las letras
+    .replace(/[\u0300-\u036f]/g, ""); // Eliminar los signos diacríticos
+} // Función para procesar el texto ingresado por el usuario
 
-function botonEncriptar(){
-    const textoNoTransformado = procesarTexto(campo_texto.value);
-    const textoTransformado = encriptar(textoNoTransformado);
-    campo_mensaje.value = textoTransformado;
-    campo_texto.value = '';
-    desaparecerInfo();
-} //Funcion para activar la Funcion "encriptar()".
+function isEmpty(field) {
+  if (field.value === "") {
+    return true;
+  }
+} // Función para verificar si el campo de texto esta vacio
 
-function encriptar(textoDesencriptado) {
-    for (let i = 0; i < diccionario_codigos.length; i++) {
-        if (textoDesencriptado.includes(diccionario_codigos[i][0])) {
-            textoDesencriptado = textoDesencriptado.replaceAll(
-                diccionario_codigos[i][0], 
-                diccionario_codigos[i][1]
-                );
-        }
+function encrypt(unencryptedText) {
+  for (let i = 0; i < codeDictionary.length; i++) {
+    if (unencryptedText.includes(codeDictionary[i][0])) {
+      unencryptedText = unencryptedText.replaceAll(
+        codeDictionary[i][0],
+        codeDictionary[i][1]
+      );
     }
-    return textoDesencriptado;
-} //Funcion para encriptar el texto dado por el usuario.
+  }
+  return unencryptedText;
+} // Función para encriptar el texto dado por el usuario
 
-function botonDesencriptar() {
-    const texto = desencriptar(campo_texto.value);
-    campo_mensaje.value = texto;
-    campo_texto.value = '';
-    desaparecerInfo();
-} //Funcion para activar la Funcion "desencriptar()".
-
-function desencriptar(textoEncriptado) {
-    for(let i = 0; i < diccionario_codigos.length; i++){
-        if (textoEncriptado.includes(diccionario_codigos[i][1])) {
-            textoEncriptado = textoEncriptado.replaceAll(
-                diccionario_codigos[i][1],
-                diccionario_codigos[i][0]
-            );
-        }
+function decrypt(encryptedText) {
+  for (let i = 0; i < codeDictionary.length; i++) {
+    if (encryptedText.includes(codeDictionary[i][1])) {
+      encryptedText = encryptedText.replaceAll(
+        codeDictionary[i][1],
+        codeDictionary[i][0]
+      );
     }
-    return textoEncriptado;
-} //Funcion para desencriptar el texto dado por el usuario.
+  }
+  return encryptedText;
+} // Función para desencriptar el texto dado por el usuario
 
-function desaparecerInfo() {
-    campoTextoSalida = campo_mensaje.value;
-    info = infoSalida;
-    if (campoTextoSalida =! '') {
-        info.style.display = 'none';
-    }
-} //Funcion para desaparecer la informacion del "campo_mensaje"
+function encryptText() {
+  const untransformedText = processText(inputTextField.value);
+  const transformedText = encrypt(untransformedText);
+  messageField.value = transformedText;
+  inputTextField.value = "";
+  if (transformedText !== "") {
+    hideInfo();
+  }
+} // Función para activar la función "encrypt()"
 
-function aparecerInfo() {
-    campoTextoSalida = campo_mensaje.value;
-    info = infoSalida;
-    if (campoTextoSalida == '') {
-        info.style.display = 'flex';
-    }
-} //Funcion para aparecer la informacion del "campo_mensaje"
+function decryptText() {
+  const text = decrypt(inputTextField.value);
+  messageField.value = text;
+  inputTextField.value = "";
+  if (text !== "") {
+    hideInfo();
+  }
+} // Función para activar la función "decrypt()"
 
-campo_mensaje.addEventListener('keydown', desaparecerInfo) //Evento que llama a la funcion "desaparacerInfo()" cuando se presiona una tecla
+function showInfo() {
+  outputInfo.classList.remove("hidden");
+  messageField.classList.add("hidden");
+  copyButton.classList.add("pointer-events-none");
+} // Función para mostrar el mensaje de información y ocultar el campo de texto
 
-campo_mensaje.addEventListener('keyup', aparecerInfo) //Evento que llama a la funcion "aparacerInfo()" cuando se levanta una tecla
+function hideInfo() {
+  outputInfo.classList.add("hidden");
+  messageField.classList.remove("hidden");
+  copyButton.classList.remove("pointer-events-none");
+} // Función para ocultar el mensaje de información y mostrar el campo de texto
 
-copiar.addEventListener('click', async() => {
-    await navigator.clipboard.writeText(campo_mensaje.value);
-    campo_mensaje.value = '';
-    aparecerInfo();
-}); //Funcion para copiar el texto de "campo_mensaje".
+encryptButton.addEventListener("click", encryptText); // Función para activar la función "encryptText()"
+
+decryptButton.addEventListener("click", decryptText); // Función para activar la función "decrypText()"
+
+copyButton.addEventListener("click", async () => {
+  if (!isEmpty(messageField)) {
+    await navigator.clipboard.writeText(messageField.value);
+    showInfo();
+    messageField.value = "";
+  }
+}); /* Función para copiar el texto del "messageField" al portapapeles
+ y limpiar el campo de texto y mostrar la información de nuevo */
+
+messageField.addEventListener("keyup", () => {
+  if (isEmpty(messageField)) {
+    showInfo();
+  }
+}); /* Función para mostrar el mensaje de información y ocultar el campo de texto
+ cuando el campo del mensaje este vacio */
